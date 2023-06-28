@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { AppService } from './service/app.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'dashboard';
+  showLoader: boolean = false;
+
+  constructor(
+    private _app: AppService,
+    public cdRef: ChangeDetectorRef,
+  ){}
+
+  ngOnInit(){
+    this._app.loaderInfo.subscribe((val) => {
+      this.showLoader = val;
+      this.cdRef.detectChanges();
+    });
+  }
 }

@@ -1,0 +1,91 @@
+@import './variable.scss';
+
+// Login Page CSS
+
+.login-contents {
+    background-image: url("https://cdn.wallpapersafari.com/72/59/PQ1dWo.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .login-cards {
+        width: 500px;
+        height: 400px;
+        border-radius: 12px;
+        box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.25) !important;
+
+        .login-texts {
+            padding: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 336px;
+            gap: 32px;
+        }
+    }
+}
+
+.login-inputs {
+    position: relative;
+    input {
+        border-bottom: 2px solid $theme-2;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        background: transparent;
+        @extend .log-id-pss-text;
+        width: 300px;
+
+        &::placeholder {
+            @extend .text-details;
+        }
+
+        &:focus-visible {
+            outline: none !important
+        }
+    }
+    .fa{
+        position: absolute;
+        right: 0px;
+        top: 5px;
+        color: $text-3;
+    }
+}
+
+// Auto Complete off
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #000 !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+
+// Buttons
+
+.kyc-button {
+    // This is common button css for all
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 16px;
+    border-radius: $lg-border-radius;
+    height: 36px;
+    min-width: 120px;
+    cursor: pointer;
+    @extend .font-md-b
+}
+
+.login-button {
+    background-color: $theme-1;
+    color: $text-2;
+    border: none;
+    @extend .kyc-button;
+}

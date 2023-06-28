@@ -1,0 +1,95 @@
+
+// Margins
+
+// You can calcualte the class and the value
+// EG:- l = Left, m = Margin, 1 = 1*4 = 4px, 2 = 2*4 = 8px
+
+// Margin
+@for $i from 0 through 15 {
+  .m-#{$i} {
+    margin: #{$i * 4}px !important;
+  }
+}
+
+// Left Margin
+@for $i from 0 through 15 {
+  .ml-#{$i} {
+    margin-left: #{$i * 4}px !important;
+  }
+}
+
+// Right Margin
+@for $i from 0 through 15 {
+  .mr-#{$i} {
+    margin-right: #{$i * 4}px !important;
+  }
+}
+
+// Top Margin
+@for $i from 0 through 15 {
+  .mt-#{$i} {
+    margin-top: #{$i * 4}px !important;
+  }
+}
+
+// Bottom Margin
+@for $i from 0 through 15 {
+  .mb-#{$i} {
+    margin-bottom: #{$i * 4}px !important;
+  }
+}
+
+
+
+// Paddings
+
+// Padding
+@for $i from 0 through 15 {
+  .p-#{$i} {
+    padding: #{$i * 4}px !important;
+  }
+}
+
+// Left Padding
+@for $i from 0 through 15 {
+  .pl-#{$i} {
+    padding-left: #{$i * 4}px !important;
+  }
+}
+
+// Right Padding
+@for $i from 0 through 15 {
+  .pr-#{$i} {
+    padding-right: #{$i * 4}px !important;
+  }
+}
+
+// Top Padding
+@for $i from 0 through 15 {
+  .pt-#{$i} {
+    padding-top: #{$i * 4}px !important;
+  }
+}
+
+// Bottom Padding
+@for $i from 0 through 15 {
+  .pb-#{$i} {
+    padding-bottom: #{$i * 4}px !important;
+  }
+}
+
+
+// Gaps
+
+@for $i from 1 through 15 {
+  .gap-#{$i} {
+    gap: #{$i * 4}px !important;
+  }
+}
+
+
+// Common CSS
+
+.float-right{
+  float: right !important;
+}

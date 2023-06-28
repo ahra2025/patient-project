@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import './assets/scss/components.scss';
+@import './assets/scss/text.scss';
+@import './assets/scss/variable.scss';
+@import './assets/scss/margin-padding.scss';
+
+@font-face {
+    font-family: 'Asap Medium';
+    src: url('assets/fonts/Asap-Medium.woff2') format('woff2'), url('assets/fonts/Asap-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Asap';
+    src: url('assets/fonts/Asap-Regular.woff2') format('woff2'), url('assets/fonts/Asap-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Asap Bold';
+    src: url('assets/fonts/Asap-Bold.woff2') format('woff2'), url('assets/fonts/Asap-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-family: 'Asap';
+}

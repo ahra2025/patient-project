@@ -1,0 +1,86 @@
+// Colors
+
+$bg-1: #FFFFFF;
+$bg-2: #FFFFFF;
+$card-2: #FFFFFF;
+$text-1: #FFFFFF;
+$text-2: #FFFFFF;
+$text-3: #4c515b;
+$stroke-1: #475E6C;
+$success-color: #18C098;
+$warning-color: #ED7C15;
+$danger-color: #EC4176;
+$theme-1: #c56868;
+$theme-2: #0075FF;
+
+// Border Radius
+
+$sm-border-radius: 4px !important;
+$lg-border-radius: 8px !important;
+$xl-border-radius: 12px !important;
+
+
+// Font Families
+
+$font-regular: 'Asap' !important;
+$font-medium: 'Asap Medium' !important;
+$font-bold: 'Asap Bold' !important;
+
+
+// Font Sizes
+
+$font-snippet: 12px !important;
+$font-text: 14px !important;
+$font-md: 16px !important;
+$font-lg: 18px !important;
+$font-xl: 24px !important;
+
+// Drop Shadows
+
+$shadow-selected: 0px 0px 9px rgba(23, 124, 218, 0.5) !important;
+$shadow-dialog: 0px 0px 9px rgba(0, 0, 0, 0.25) !important;
+
+// Font Styles...
+
+.font-line-height{
+    line-height: 160%;
+    letter-spacing: -0.02em;
+    @extend .mb-0 !optional;
+    @extend .mt-0 !optional;
+}
+
+.font-sm {
+    font-size: $font-snippet;
+    font-family: $font-regular;
+    @extend .font-line-height !optional;
+}
+
+.font-text {
+    font-size: $font-text;
+    font-family: $font-regular;
+    @extend .font-line-height !optional;
+}
+
+.font-md {
+    font-size: $font-md;
+    font-family: $font-regular;
+    @extend .font-line-height !optional;
+}
+
+.font-md-b {
+    font-size: $font-md;
+    font-family: $font-medium;
+    @extend .font-line-height !optional;
+}
+
+.font-lg {
+    font-size: $font-lg;
+    font-family: $font-medium;
+    @extend .font-line-height !optional;
+}
+
+.font-xl {
+    font-size: $font-xl;
+    font-family: $font-bold;
+    @extend .font-line-height !optional;
+}

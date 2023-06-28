@@ -1,0 +1,99 @@
+@import './variable.scss';
+
+.log-text{
+    color: $theme-1;
+    @extend .font-xl;
+}
+
+.log-id-pss-text{
+    color: $text-3;
+    @extend .font-lg;
+}
+
+.page-headings {
+    color: $text-1;
+    @extend .font-xl;
+}
+
+.card-headings {
+    @extend .font-lg;
+}
+
+.text-header {
+    @extend .font-md-b;
+}
+
+.text-details {
+    @extend .font-md;
+}
+
+.user-input-text {
+    @extend .font-md;
+}
+
+.hint-text {
+    @extend .font-text;
+}
+
+.hint-text-small {
+    @extend .font-sm;
+}
+
+.highlight-text {
+    @extend .font-md;
+    color: $theme-2;
+}
+
+.success-text {
+    @extend .font-md;
+    color: $success-color;
+}
+
+.success-text-small {
+    @extend .font-sm;
+    color: $success-color;
+}
+
+.success-bg-color {
+    background-color: $success-color !important;
+}
+
+.success-border-color {
+    border: 2px solid $success-color !important;
+}
+
+.danger-text {
+    @extend .font-md;
+    color: $danger-color;
+}
+
+.danger-text-small {
+    @extend .font-sm;
+    color: $danger-color;
+}
+
+.danger-bg-color {
+    background-color: $danger-color !important;
+}
+
+.danger-border-color {
+    border: 2px solid $danger-color !important;
+}
+
+.warning-text {
+    @extend .font-md;
+    color: $warning-color;
+}
+
+.warning-text-small {
+    @extend .font-sm;
+    color: $warning-color;
+}
+
+.warning-bg-color {
+    background-color: $warning-color !important;
+}
+
+.warning-border-color {
+    border: 2px solid $warning-color !important;
+}
