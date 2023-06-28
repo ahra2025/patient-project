@@ -1,2 +1,2 @@
 # patient-project
-it is college proejct
+it is college proejct.
