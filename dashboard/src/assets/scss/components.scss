@@ -33,6 +33,7 @@
 
 .login-inputs {
     position: relative;
+
     input {
         border-bottom: 2px solid $theme-2;
         border-top: none;
@@ -50,7 +51,8 @@
             outline: none !important
         }
     }
-    .fa{
+
+    .fa {
         position: absolute;
         right: 0px;
         top: 5px;
@@ -88,4 +90,34 @@ input:-webkit-autofill:focus {
     color: $text-2;
     border: none;
     @extend .kyc-button;
+
+    &:disabled {
+        pointer-events: none;
+        opacity: 0.9;
+    }
+}
+
+// Dashboards
+
+.bg-content {
+    min-height: 100vh;
+    padding: 32px;
+    background-color: $bg-2; /* For browsers that do not support gradients */
+    background-image: linear-gradient($bg-1, $bg-2);
+}
+
+.card-1{
+    background-color: $card-1;
+    padding: 24px;
+    box-shadow: $shadow-dialog;
+    border-radius: $lg-border-radius;
+}
+
+.horizontal-line{
+    border-top: 2px solid $stroke-1;
+
+    &.small-card{
+        width: calc(100% + 32px);
+        margin: 16px -16px;
+    }
 }
