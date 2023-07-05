@@ -1,5 +1,69 @@
 <div class="bg-content">
-    <div class="row">
+    <div class="card-1">
+        <div class="row">
+            <div class="col-12">
+                <h5 class="card-headings">User Basic Details</h5>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-xl-4 col-lg-4 col-md-12">
+                <div class="d-flex align-items-center justify-content-between">
+                    <p class="user-input-text">Name</p>
+                    <div class="info-card">
+                        <p class="hint-text">{{userBasicDetails?.name || 'Not Found'}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-12">
+                <div class="d-flex align-items-center justify-content-between">
+                    <p class="user-input-text">Address</p>
+                    <div class="info-card">
+                        <p class="hint-text">{{userBasicDetails?.address || 'Not Found'}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-12">
+                <div class="d-flex align-items-center justify-content-between">
+                    <p class="user-input-text">Country</p>
+                    <div class="info-card">
+                        <p class="hint-text">{{userBasicDetails?.country || 'Not Found'}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-6">
+            <div class="col-12">
+                <h5 class="card-headings">Consultant Doctor's Details</h5>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-xl-4 col-lg-4 col-md-12">
+                <div class="d-flex align-items-center justify-content-between">
+                    <p class="user-input-text">Name</p>
+                    <div class="info-card">
+                        <p class="hint-text">{{userBasicDetails?.consultantDoctorName || 'Not Found'}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-12">
+                <div class="d-flex align-items-center justify-content-between">
+                    <p class="user-input-text">Address</p>
+                    <div class="info-card">
+                        <p class="hint-text">{{userBasicDetails?.consultantDoctorAddress || 'Not Found'}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-12">
+                <div class="d-flex align-items-center justify-content-between">
+                    <p class="user-input-text">Contact No.</p>
+                    <div class="info-card">
+                        <p class="hint-text">{{userBasicDetails?.consultantDoctorNumber || 'Not Found'}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-6">
         <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
             <div class="card-1 p-4">
                 <h5 class="card-headings">Body Temprature</h5>
@@ -44,9 +108,14 @@
     <div class="row mt-6">
         <div class="col-xl-6 col-lg-6 col-md-12">
             <div class="card-1">
-                <div class="d-flex align-items-center gap-4">
-                    <h5 class="card-headings">Body Temprature</h5>
-                    <p class="hint-text">12</p>
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center gap-4">
+                        <h5 class="card-headings">Body Temprature</h5>
+                        <p class="hint-text">{{bodyTemperature?.page?.totalItems}}</p>
+                    </div>
+                    <div class="refresh" (click)="refreshButton('bodyTemperature')">
+                        <p class="user-input-text">Refresh</p>
+                    </div>
                 </div>
                 <div class="mt-4">
                     <section class="table-scroller">
@@ -60,32 +129,38 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let item of bodyTemperature?.list | paginate: bodyTemperature?.page; let i = index">
+                                <tr *ngFor="let item of bodyTemperature?.list; let i = index">
                                     <td>{{i + 1}}</td>
                                     <td>{{item?.['bodyTemperature'] || 0}}</td>
                                     <td>Celcius</td>
                                     <td>{{(item?.['createdDate'] | date : 'dd MMM, yyyy') || '-'}}</td>
                                 </tr>
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="100%">
-                                        <pagination-controls [maxSize]="maxSize" [directionLinks]="directionLinks"
-                                            previousLabel="Previous" nextLabel="Next"
-                                            (pageChange)="pageChange($event, 'bodyTemperature')"></pagination-controls>
-                                    </td>
-                                </tr>
-                            </tfoot>
                         </table>
                     </section>
+                    <div class="new-small-pagination mt-4" *ngIf="bodyTemperature?.page?.totalItems > 0">
+                        <span class="item box"
+                            [ngClass]="bodyTemperature?.page?.totalPage > 1 && bodyTemperature?.page?.currentPage > 1 ? 'active' : ''"
+                            (click)="handleDecrease('bodyTemperature')"><i class="fa fa-angle-left"></i></span>
+                        <span class="item box">{{bodyTemperature?.page?.currentPage}}</span>
+                        <span class="item">/ {{bodyTemperature?.page?.totalPage}}</span>
+                        <span class="item box"
+                            [ngClass]="bodyTemperature?.page?.totalPage > bodyTemperature?.page?.currentPage ? 'active' : ''"
+                            (click)="handleIncrease('bodyTemperature')"><i class="fa fa-angle-right"></i></span>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-xl-6 col-lg-6 col-md-12">
             <div class="card-1">
-                <div class="d-flex align-items-center gap-4">
-                    <h5 class="card-headings">Body Movement</h5>
-                    <p class="hint-text">12</p>
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center gap-4">
+                        <h5 class="card-headings">Body Movement</h5>
+                        <p class="hint-text">{{bodyMovement?.page?.totalItems}}</p>
+                    </div>
+                    <div class="refresh" (click)="refreshButton('bodyMovement')">
+                        <p class="user-input-text">Refresh</p>
+                    </div>
                 </div>
                 <div class="mt-4">
                     <section class="table-scroller">
@@ -98,23 +173,116 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let item of bodyMovement?.list | paginate: bodyMovement?.page; let i = index">
+                                <tr *ngFor="let item of bodyMovement?.list; let i = index">
                                     <td>{{i + 1}}</td>
                                     <td>{{item?.['bodyMovement'] == 'true' ? 'On The Bed' : 'Not On The Bed'}}</td>
                                     <td>{{(item?.['createdDate'] | date : 'dd MMM, yyyy') || '-'}}</td>
                                 </tr>
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="100%">
-                                        <pagination-controls [maxSize]="maxSize" [directionLinks]="directionLinks"
-                                            previousLabel="Previous" nextLabel="Next"
-                                            (pageChange)="pageChange($event, 'bodyMovement')"></pagination-controls>
-                                    </td>
-                                </tr>
-                            </tfoot>
                         </table>
                     </section>
+                    <div class="new-small-pagination mt-4" *ngIf="bodyMovement?.page?.totalItems > 0">
+                        <span class="item box"
+                            [ngClass]="bodyMovement?.page?.totalPage > 1 && bodyMovement?.page?.currentPage > 1 ? 'active' : ''"
+                            (click)="handleDecrease('bodyMovement')"><i class="fa fa-angle-left"></i></span>
+                        <span class="item box">{{bodyMovement?.page?.currentPage}}</span>
+                        <span class="item">/ {{bodyMovement?.page?.totalPage}}</span>
+                        <span class="item box"
+                            [ngClass]="bodyMovement?.page?.totalPage > bodyMovement?.page?.currentPage ? 'active' : ''"
+                            (click)="handleIncrease('bodyMovement')"><i class="fa fa-angle-right"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-6">
+        <div class="col-xl-6 col-lg-6 col-md-12">
+            <div class="card-1">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center gap-4">
+                        <h5 class="card-headings">Body Pulse</h5>
+                        <p class="hint-text">{{pulse?.page?.totalItems}}</p>
+                    </div>
+                    <div class="refresh" (click)="refreshButton('pulse')">
+                        <p class="user-input-text">Refresh</p>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <section class="table-scroller">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th>Pulse</th>
+                                    <th>Unit</th>
+                                    <th>Date Added</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of pulse?.list; let i = index">
+                                    <td>{{i + 1}}</td>
+                                    <td>{{item?.['pulse'] || 0}}</td>
+                                    <td>BPM</td>
+                                    <td>{{(item?.['createdDate'] | date : 'dd MMM, yyyy') || '-'}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                    <div class="new-small-pagination mt-4" *ngIf="pulse?.page?.totalItems > 0">
+                        <span class="item box"
+                            [ngClass]="pulse?.page?.totalPage > 1 && pulse?.page?.currentPage > 1 ? 'active' : ''"
+                            (click)="handleDecrease('pulse')"><i class="fa fa-angle-left"></i></span>
+                        <span class="item box">{{pulse?.page?.currentPage}}</span>
+                        <span class="item">/ {{pulse?.page?.totalPage}}</span>
+                        <span class="item box"
+                            [ngClass]="pulse?.page?.totalPage > pulse?.page?.currentPage ? 'active' : ''"
+                            (click)="handleIncrease('pulse')"><i class="fa fa-angle-right"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12">
+            <div class="card-1">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center gap-4">
+                        <h5 class="card-headings">Air Details</h5>
+                        <p class="hint-text">{{temperature?.page?.totalItems}}</p>
+                    </div>
+                    <div class="refresh" (click)="refreshButton('temperature')">
+                        <p class="user-input-text">Refresh</p>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <section class="table-scroller">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th>Air Temperature</th>
+                                    <th>Air Humidity</th>
+                                    <th>Date Added</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of temperature?.list; let i = index">
+                                    <td>{{i + 1}}</td>
+                                    <td>{{item?.['temperature'] || '-'}}</td>
+                                    <td>{{item?.humidity ? (item?.humidity + ' %') : '0%'}}</td>
+                                    <td>{{(item?.['createdDate'] | date : 'dd MMM, yyyy') || '-'}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                    <div class="new-small-pagination mt-4" *ngIf="temperature?.page?.totalItems > 0">
+                        <span class="item box"
+                            [ngClass]="temperature?.page?.totalPage > 1 && temperature?.page?.currentPage > 1 ? 'active' : ''"
+                            (click)="handleDecrease('temperature')"><i class="fa fa-angle-left"></i></span>
+                        <span class="item box">{{temperature?.page?.currentPage}}</span>
+                        <span class="item">/ {{temperature?.page?.totalPage}}</span>
+                        <span class="item box"
+                            [ngClass]="temperature?.page?.totalPage > temperature?.page?.currentPage ? 'active' : ''"
+                            (click)="handleIncrease('temperature')"><i class="fa fa-angle-right"></i></span>
+                    </div>
                 </div>
             </div>
         </div>

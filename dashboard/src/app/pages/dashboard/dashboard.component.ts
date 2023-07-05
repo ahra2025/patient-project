@@ -11,6 +11,7 @@ import { AppService } from 'src/app/service/app.service';
 export class DashboardComponent implements OnInit {
   directionLinks: boolean = true;
   maxSize: number = 9;
+  userBasicDetails: any;
 
   constructor(
     private router: Router,
@@ -23,7 +24,8 @@ export class DashboardComponent implements OnInit {
     page: {
       itemsPerPage: 5,
       currentPage: 1,
-      totalItems: 0
+      totalItems: 0,
+      totalPage: 0
     },
     list: []
   };
@@ -31,7 +33,8 @@ export class DashboardComponent implements OnInit {
     page: {
       itemsPerPage: 5,
       currentPage: 1,
-      totalItems: 0
+      totalItems: 0,
+      totalPage: 0
     },
     list: []
   };
@@ -39,7 +42,8 @@ export class DashboardComponent implements OnInit {
     page: {
       itemsPerPage: 5,
       currentPage: 1,
-      totalItems: 0
+      totalItems: 0,
+      totalPage: 0
     },
     list: []
   };
@@ -47,7 +51,8 @@ export class DashboardComponent implements OnInit {
     page: {
       itemsPerPage: 5,
       currentPage: 1,
-      totalItems: 0
+      totalItems: 0,
+      totalPage: 0
     },
     list: []
   };
@@ -55,7 +60,8 @@ export class DashboardComponent implements OnInit {
     page: {
       itemsPerPage: 5,
       currentPage: 1,
-      totalItems: 0
+      totalItems: 0,
+      totalPage: 0
     },
     list: []
   };
@@ -76,7 +82,8 @@ export class DashboardComponent implements OnInit {
   }
 
   getUserDetails() {
-
+    this._app.changeLoaderVisibility(true);
+    this._app.getUserDetails().pipe(finalize(() => this._app.changeLoaderVisibility(false))).subscribe((res) => this.userBasicDetails = res);
   }
 
   filterData(page: any, bodyTemperature: boolean, bodyMovement: boolean, humidity: boolean, temperature: boolean, pulse: boolean) {
@@ -96,29 +103,34 @@ export class DashboardComponent implements OnInit {
       if (bodyTemperature) {
         this.bodyTemperature['list'] = res?.content || [];
         this.bodyTemperature['page']['totalItems'] = res?.totalElements || 0;
+        this.bodyTemperature['page']['totalPage'] = res?.totalPages || 0;
       }
       else if (bodyMovement) {
         this.bodyMovement['list'] = res?.content || [];
         this.bodyMovement['page']['totalItems'] = res?.totalElements || 0;
+        this.bodyMovement['page']['totalPage'] = res?.totalPages || 0;
       }
       else if (humidity) {
         this.humidity['list'] = res?.content || [];
         this.humidity['page']['totalItems'] = res?.totalElements || 0;
+        this.humidity['page']['totalPage'] = res?.totalPages || 0;
       }
       else if (temperature) {
         this.temperature['list'] = res?.content || [];
         this.temperature['page']['totalItems'] = res?.totalElements || 0;
+        this.temperature['page']['totalPage'] = res?.totalPages || 0;
       }
       else if (pulse) {
         this.pulse['list'] = res?.content || [];
         this.pulse['page']['totalItems'] = res?.totalElements || 0;
+        this.pulse['page']['totalPage'] = res?.totalPages || 0;
       }
     })
   }
 
-  pageChange(page, type){
-    this.ngZone.run(() => {
-      this[type].page['currentPage'] = page;
+  handleIncrease(type: string) {
+    if (this[type]['page']['currentPage'] < this[type]['page']['totalPage']) {
+      this[type]['page']['currentPage'] += 1;
       const obj = {
         bodyTemperature: type == 'bodyTemperature' ? true : false,
         bodyMovement: type == 'bodyMovement' ? true : false,
@@ -127,7 +139,33 @@ export class DashboardComponent implements OnInit {
         pulse: type == 'pulse' ? true : false,
       }
       this.filterData(this[type].page['currentPage'], obj['bodyTemperature'], obj['bodyMovement'], obj['humidity'], obj['temperature'], obj['pulse']);
-    });
+    }
+  }
+
+  handleDecrease(type: string) {
+    if (this[type]['page']['currentPage'] > 1) {
+      this[type]['page']['currentPage'] -= 1;
+      const obj = {
+        bodyTemperature: type == 'bodyTemperature' ? true : false,
+        bodyMovement: type == 'bodyMovement' ? true : false,
+        humidity: type == 'humidity' ? true : false,
+        temperature: type == 'temperature' ? true : false,
+        pulse: type == 'pulse' ? true : false,
+      }
+      this.filterData(this[type].page['currentPage'], obj['bodyTemperature'], obj['bodyMovement'], obj['humidity'], obj['temperature'], obj['pulse']);
+    }
+  }
+
+  refreshButton(type){
+    this[type]['page']['currentPage'] = 1;
+      const obj = {
+        bodyTemperature: type == 'bodyTemperature' ? true : false,
+        bodyMovement: type == 'bodyMovement' ? true : false,
+        humidity: type == 'humidity' ? true : false,
+        temperature: type == 'temperature' ? true : false,
+        pulse: type == 'pulse' ? true : false,
+      }
+      this.filterData(this[type].page['currentPage'], obj['bodyTemperature'], obj['bodyMovement'], obj['humidity'], obj['temperature'], obj['pulse']);
   }
 
 }

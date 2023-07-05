@@ -114,6 +114,17 @@ input:-webkit-autofill:focus {
     border-radius: $lg-border-radius;
 }
 
+.info-card {
+    background-color: $bg-2;
+    padding: 16px;
+    min-width: 280px;
+    max-width: 320px;
+    width: 100%;
+    box-shadow: $shadow-dialog;
+    border-radius: $lg-border-radius;
+    border: 2px solid $stroke-1;
+}
+
 .horizontal-line {
     border-top: 2px solid $stroke-1;
 
@@ -132,10 +143,9 @@ input:-webkit-autofill:focus {
 
         thead tr {
             background-color: $bg-2;
-            @extend .hint-text;
 
             th {
-                @extend .font-text;
+                @extend .hint-text;
                 padding: 12px 16px;
             }
         }
@@ -164,4 +174,11 @@ input:-webkit-autofill:focus {
 .table-scroller::-webkit-scrollbar {
     width: 5px;
     height: 5px;
+}
+
+.refresh {
+    background-color: $bg-2;
+    border-radius: $xl-border-radius;
+    padding: 4px 12px;
+    cursor: pointer;
 }
