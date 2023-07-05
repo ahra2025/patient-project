@@ -1,0 +1,70 @@
+@import './variable.scss';
+
+pagination-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.ngx-pagination {
+
+  a {
+      border-radius: 6px;
+      @extend .hint-text;
+      text-decoration: none;
+        color: $text-2 !important;
+      &:hover {
+          border-radius: 6px;
+          background-color: rgba(23, 124, 218, 0.3) !important;
+      }
+  }
+
+  .disabled {
+      border-radius: 6px;
+      @extend .hint-text;
+      opacity: 0.8;
+  }
+
+  .current {
+      background-color: rgba(23, 124, 218, 0.3) !important;
+      @extend .hint-text;
+      border-radius: 6px;
+      padding: 2.8px 12px !important;
+  }
+}
+
+.ngx-pagination {
+  position: relative;
+  flex-wrap: wrap;
+
+  .pagination-previous.disabled::before {
+      content: none !important;
+      display: inline-block;
+      margin-right: 0.5rem;
+      color: $theme-2;
+      position: absolute;
+      top: 5px;
+      left: 18px;
+  }
+
+  .pagination-previous a::before {
+      content: none !important;
+      display: inline-block;
+      margin-right: 0.5rem;
+      color: $theme-2;
+      position: absolute;
+      top: 5px;
+      left: 18px;
+  }
+
+  .pagination-next a::after,
+  .pagination-next.disabled::after {
+      content: none !important;
+      display: inline-block;
+      margin-right: 0.5rem;
+      color: $theme-2;
+      position: absolute;
+      top: 5px;
+      right: -15px;
+  }
+}

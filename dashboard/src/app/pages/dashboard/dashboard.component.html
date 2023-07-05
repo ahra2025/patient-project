@@ -41,4 +41,82 @@
             </div>
         </div>
     </div>
+    <div class="row mt-6">
+        <div class="col-xl-6 col-lg-6 col-md-12">
+            <div class="card-1">
+                <div class="d-flex align-items-center gap-4">
+                    <h5 class="card-headings">Body Temprature</h5>
+                    <p class="hint-text">12</p>
+                </div>
+                <div class="mt-4">
+                    <section class="table-scroller">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th>Temperature</th>
+                                    <th>Unit</th>
+                                    <th>Date Added</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of bodyTemperature?.list | paginate: bodyTemperature?.page; let i = index">
+                                    <td>{{i + 1}}</td>
+                                    <td>{{item?.['bodyTemperature'] || 0}}</td>
+                                    <td>Celcius</td>
+                                    <td>{{(item?.['createdDate'] | date : 'dd MMM, yyyy') || '-'}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="100%">
+                                        <pagination-controls [maxSize]="maxSize" [directionLinks]="directionLinks"
+                                            previousLabel="Previous" nextLabel="Next"
+                                            (pageChange)="pageChange($event, 'bodyTemperature')"></pagination-controls>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12">
+            <div class="card-1">
+                <div class="d-flex align-items-center gap-4">
+                    <h5 class="card-headings">Body Movement</h5>
+                    <p class="hint-text">12</p>
+                </div>
+                <div class="mt-4">
+                    <section class="table-scroller">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th>Body Status</th>
+                                    <th>Date Added</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of bodyMovement?.list | paginate: bodyMovement?.page; let i = index">
+                                    <td>{{i + 1}}</td>
+                                    <td>{{item?.['bodyMovement'] == 'true' ? 'On The Bed' : 'Not On The Bed'}}</td>
+                                    <td>{{(item?.['createdDate'] | date : 'dd MMM, yyyy') || '-'}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="100%">
+                                        <pagination-controls [maxSize]="maxSize" [directionLinks]="directionLinks"
+                                            previousLabel="Previous" nextLabel="Next"
+                                            (pageChange)="pageChange($event, 'bodyMovement')"></pagination-controls>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
